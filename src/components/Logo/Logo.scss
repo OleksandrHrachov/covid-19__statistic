@@ -1,0 +1,23 @@
+.logo {
+  box-sizing: border-box;
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+
+  &____img-box {
+    width: 200px;
+    height: 200px;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__text{
+    font-size: 72px;
+    line-height: 84px;
+    text-transform: uppercase;
+  }
+}

@@ -1,3 +1,27 @@
-.starter {
-  font-size: 18px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.app {
+  &__container {
+    box-sizing: border-box;
+    max-width: 1920px;
+    height: 100%;
+    background-color: #fff;
+    padding: 40px 60px 0;
+    margin: 0 auto;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: #000;
+
+    &--with-modal {
+      overflow: hidden;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }

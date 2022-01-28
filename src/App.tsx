@@ -1,27 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
+import { Country } from './interface/Country';
 
-interface Props {
-  onClick: () => void;
-}
+import { Logo } from './components/Logo/Logo';
+import { Search } from './components/Search/Saerch';
+import { CountriesTable } from './components/CountryTable/CountriesTable';
+import { CountryDetails } from './components/CountryDetails/CountryDetails';
 
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+import { getAllCountries } from './api/countries';
 
 export const App: React.FC = () => {
+  const [countriesList, setCountriesList] = useState<null | Country[]>(null);
+  const [selectedCountry, setSelectedCountry] = useState<null | string>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const loadAllCountries = async () => {
+    const allCountries = await getAllCountries();
+
+    setCountriesList(allCountries);
+  };
+
+  useEffect(() => {
+    loadAllCountries();
+  }, []);
+
+  const selectCountry = (countryName: string) => {
+    setSelectedCountry(countryName);
+  };
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>
-        <TodoList />
-      </Provider>
+    <div
+      className="app__container"
+    >
+
+      <div className="app__top">
+        <Logo />
+        <Search
+          value={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      </div>
+
+      {countriesList === null ? (
+        <h2>no data</h2>
+      ) : (
+        <>
+          <CountriesTable
+            countriesList={countriesList}
+            selectCountry={selectCountry}
+            searchQuery={searchQuery}
+          />
+        </>
+      )}
+
+      {(selectedCountry && countriesList) && (
+        <CountryDetails
+          countriesList={countriesList}
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+        />
+      )}
     </div>
   );
 };
