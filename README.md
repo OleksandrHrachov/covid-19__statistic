@@ -1,9 +1,1 @@
-# React TypeScript Starter Pack
-
-To use this template click `Use this template`
-
-### Available Scripts
-
-`Deploy` - available to deploy your application to gh-pages
-
-`SCSS Preprocessor` - available to write your styles with modern style language
+TEST TASK - https://drive.google.com/file/d/1KeAjujY2kzhP7Bo_dE5_CrjpXtejCHrr/view
